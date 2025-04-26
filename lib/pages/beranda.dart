@@ -32,7 +32,7 @@ class _Beranda extends State<Beranda> {
               ),
               ListTile(
                 title: Text("Beranda"),
-                trailing: Icon(Icons.arrow_upward),
+                trailing: Icon(Icons.arrow_back),
                 onTap: () {
                   Navigator.push(context,
                   MaterialPageRoute(builder: (context)=> Beranda()));
