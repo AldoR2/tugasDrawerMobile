@@ -26,25 +26,33 @@ class _LoginState extends State<Login> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.amber),
       home: Scaffold(
-        appBar: AppBar(title: Text('Halaman Login'), centerTitle: true),
         body: ListView(
           children: [
+            SizedBox(height: 80),
+            Image.asset(
+                          "assets/padlock.png",
+                          width: 120.0,
+                          height: 120.0,
+                        ),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(height: 100),
+                  SizedBox(height: 50),
                   Text(
-                    "Selamat datang, By One Chou?",
+                    "Login disini",
                     style: TextStyle(
                       fontSize: 30,
-                      color: Colors.black,
+                      color: const Color.fromARGB(255, 223, 96, 37),
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins'
                     ),
                   ),
                   Text(
-                    "Silakan melakukan login untuk mengakes aplikasi",
-                    style: TextStyle(fontFamily: 'Poppins', color: Colors.grey),
+                    "Selamat datang kembali",
+                    style: TextStyle(fontFamily: 'Poppins', 
+                    color: Colors.black87,
+                    fontSize: 20),
                   ),
                   SizedBox(height: 40),
                   ReusableTextField(
@@ -86,22 +94,34 @@ class _LoginState extends State<Login> {
                   ),
 
                   SizedBox(height: 20),
-                  ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll<Color>(
-                        Colors.blueAccent,
-                      ),
+                  Padding( 
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: SizedBox(
+                      width: double.infinity, 
+                      height: 45,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: const WidgetStatePropertyAll<Color>(
+                            Color.fromARGB(255, 223, 96, 37),
+                          ),
+                          elevation:WidgetStatePropertyAll(3),
+                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0), // Atur radius sesuai keinginan Anda
+                            ),
+                          ),
+                        ),
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          _controller.checkLogin(context);
+                        },
+                      )
                     ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      _controller.checkLogin(context);
-                    },
                   ),
-
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: Row(
@@ -130,7 +150,7 @@ class _LoginState extends State<Login> {
                               "Registrasi", // Teks "Registrasi" yang bisa diklik
                               style: TextStyle(
                                 color:
-                                    Colors.blueAccent, // Warna teks registrasi
+                                    Color.fromARGB(255, 223, 96, 37), // Warna teks registrasi
                               ),
                             ),
                           ),
