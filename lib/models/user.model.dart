@@ -1,13 +1,15 @@
 class User {
+  final String namaLengkap;
   final String username;
   final String email;
-  final int noTelp;
-  final String jenisKelamin;
-  final DateTime tglLahir;
+  final String noTelp;
+  final String? jenisKelamin;
+  final String? tglLahir;
   final String alamat;
   final String password;
 
   User({
+    required this.namaLengkap,
     required this.username,
     required this.email,
     required this.noTelp,
@@ -19,6 +21,7 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
+      namaLengkap: json['nama_lengkap'],
       username: json['username'],
       email: json['email'],
       noTelp: json['no_telp'],
@@ -30,12 +33,13 @@ class User {
   }
 
   Map<String, dynamic> toJson() => {
-    username: 'username',
-    username: 'email',
-    username: 'no_telp',
-    username: 'jenis_kelamin',
-    username: 'tgl_lahir',
-    username: 'alamat',
-    username: 'password',
+    "nama_lengkap": namaLengkap,
+    "username": username,
+    "email": email,
+    "no_telp": noTelp,
+    "jenis_kelamin": jenisKelamin,
+    "tgl_lahir": tglLahir,
+    "alamat": alamat,
+    "password": password,
   };
 }

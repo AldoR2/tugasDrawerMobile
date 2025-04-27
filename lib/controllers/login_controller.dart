@@ -1,8 +1,12 @@
 import 'dart:async';
 
+import 'package:drawer/models/user.model.dart';
 import 'package:drawer/pages/beranda.dart';
+import 'package:drawer/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController {
   bool status1 = false;
@@ -60,11 +64,36 @@ class LoginController {
     });
   }
 
-  void checkLogin(BuildContext context) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => Beranda()),
-    );
+  Future<bool> checkLogin() async {
+    final userService = UserService();
+    User? user = await userService.getUserData();
+
+    validateUsername(usernameController.text);
+    validatePassword(passwordController.text);
+
+    if (user != null) {
+      if (user.username == usernameController.text &&
+          user.password == passwordController.text) {
+        Fluttertoast.showToast(
+          msg: "Login Berhasil",
+          backgroundColor: Colors.red,
+          gravity: ToastGravity.CENTER,
+          webPosition: "center",
+        );
+        return true;
+      } else if (user.username != usernameController.text ||
+          user.password != passwordController.text) {
+        Fluttertoast.showToast(
+          msg: "Username atau password salah",
+          backgroundColor: Colors.red,
+          gravity: ToastGravity.CENTER,
+          webPosition: "center",
+        );
+      }
+      return false;
+    } else {
+      return false;
+    }
   }
 
   void dispose() {}

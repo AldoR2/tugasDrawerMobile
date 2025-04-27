@@ -7,6 +7,7 @@ class ReusableTextField extends StatefulWidget {
   final bool obscureText;
   final VoidCallback onChangedCallback;
   final String? Function()? errorTextProvider;
+  final TextInputType inputType;
 
   const ReusableTextField({
     super.key,
@@ -16,6 +17,7 @@ class ReusableTextField extends StatefulWidget {
     required this.obscureText,
     required this.onChangedCallback,
     required this.errorTextProvider,
+    required this.inputType,
   });
 
   @override
@@ -28,6 +30,7 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: TextFormField(
+        keyboardType: widget.inputType,
         controller: widget.controller,
         onChanged: (text) => widget.onChangedCallback(),
         obscureText: widget.obscureText,

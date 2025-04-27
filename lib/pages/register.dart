@@ -1,5 +1,5 @@
 import 'package:drawer/controllers/register_controller.dart';
-import 'package:drawer/pages/reusable_widget.dart';
+import 'package:drawer/reusable/reusable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -54,6 +54,7 @@ class _RegisterState extends State<Register> {
                 const SizedBox(height: 40),
                 ReusableTextField(
                   label: "Nama Lengkap",
+                  inputType: TextInputType.name,
                   icon: Icons.tag_faces,
                   controller: _controller.namaLengkapController,
                   obscureText: false,
@@ -72,6 +73,7 @@ class _RegisterState extends State<Register> {
                 ),
                 const SizedBox(height: 20),
                 ReusableTextField(
+                  inputType: TextInputType.name,
                   label: "Username",
                   icon: Icons.person,
                   controller: _controller.usernameController,
@@ -91,6 +93,7 @@ class _RegisterState extends State<Register> {
                 ),
                 const SizedBox(height: 20),
                 ReusableTextField(
+                  inputType: TextInputType.emailAddress,
                   label: "Email",
                   icon: Icons.email,
                   controller: _controller.emailController,
@@ -108,10 +111,10 @@ class _RegisterState extends State<Register> {
                         : null;
                   },
                 ),
-
                 const SizedBox(height: 20),
                 ReusableTextField(
                   label: "No. Telp",
+                  inputType: TextInputType.number,
                   icon: Icons.phone,
                   controller: _controller.noTelpController,
                   obscureText: false,
@@ -136,6 +139,7 @@ class _RegisterState extends State<Register> {
                     onChanged: (String? newValue) {
                       setState(() {
                         _controller.jenisKelamin = newValue;
+                        _controller.validateJenisKelamin();
                       });
                     },
                     items:
@@ -149,6 +153,11 @@ class _RegisterState extends State<Register> {
                             .toList(),
                     decoration: InputDecoration(
                       labelText: "Jenis Kelamin",
+
+                      errorText:
+                          (_controller.status7)
+                              ? _controller.jenisKelaminErrorMessage
+                              : null,
                       prefixIcon: const Icon(Icons.transgender),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -180,11 +189,16 @@ class _RegisterState extends State<Register> {
                           _controller.tanggalController.text = DateFormat(
                             'dd/MM/yyyy',
                           ).format(pickedDate);
+                          _controller.validateTanggalLahir();
                         });
                       }
                     },
                     decoration: InputDecoration(
                       labelText: "Tanggal Lahir",
+                      errorText:
+                          (_controller.status8)
+                              ? _controller.tanggalLahirErrorMessage
+                              : null,
                       prefixIcon: const Icon(Icons.date_range),
                       suffixIcon: const Icon(Icons.calendar_today),
                       border: OutlineInputBorder(
@@ -202,6 +216,7 @@ class _RegisterState extends State<Register> {
                 const SizedBox(height: 25),
                 ReusableTextField(
                   label: "Alamat",
+                  inputType: TextInputType.streetAddress,
                   icon: Icons.location_city,
                   controller: _controller.alamatController,
                   obscureText: false,
@@ -221,6 +236,7 @@ class _RegisterState extends State<Register> {
                 const SizedBox(height: 20),
                 ReusableTextField(
                   label: "Password",
+                  inputType: TextInputType.visiblePassword,
                   icon: Icons.lock,
                   controller: _controller.passwordController,
                   obscureText: true,
@@ -237,7 +253,26 @@ class _RegisterState extends State<Register> {
                         : null;
                   },
                 ),
-
+                const SizedBox(height: 20),
+                ReusableTextField(
+                  label: "Konfirmasi Password",
+                  inputType: TextInputType.visiblePassword,
+                  icon: Icons.lock,
+                  controller: _controller.confirmPasswordController,
+                  obscureText: true,
+                  onChangedCallback: () {
+                    setState(() {
+                      _controller.startConfirmPasswordTimer(() {
+                        setState(() {});
+                      });
+                    });
+                  },
+                  errorTextProvider: () {
+                    return (_controller.statuscp)
+                        ? _controller.confirmPasswordErrorMessage
+                        : null;
+                  },
+                ),
                 const SizedBox(height: 20),
                 ElevatedButton(
                   style: const ButtonStyle(
@@ -245,8 +280,14 @@ class _RegisterState extends State<Register> {
                       Colors.blueAccent,
                     ),
                   ),
-                  onPressed: () {
-                    _controller.saveData(context);
+                  onPressed: () async {
+                    bool success = await _controller.saveData();
+
+                    setState(() {
+                      if (success && mounted) {
+                        Navigator.pop(context);
+                      }
+                    });
                   },
                   child: const Text(
                     'Simpan',

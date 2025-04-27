@@ -1,9 +1,8 @@
 import 'package:drawer/controllers/login_controller.dart';
-import 'package:drawer/pages/reusable_widget.dart';
+import 'package:drawer/reusable/reusable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:drawer/pages/register.dart';
 import 'package:drawer/pages/beranda.dart';
-
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -49,13 +48,16 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 40),
                   ReusableTextField(
                     label: "Username",
+                    inputType: TextInputType.name,
                     icon: Icons.email,
                     controller: _controller.usernameController,
                     obscureText: false,
                     onChangedCallback: () {
                       setState(() {
                         _controller.startUsernameTimer(() {
-                          setState(() {});
+                          if (mounted) {
+                            setState(() {});
+                          }
                         });
                       });
                     },
@@ -68,13 +70,16 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 20),
                   ReusableTextField(
                     label: "Password",
+                    inputType: TextInputType.visiblePassword,
                     icon: Icons.lock,
                     controller: _controller.passwordController,
                     obscureText: true,
                     onChangedCallback: () {
                       setState(() {
                         _controller.startPasswordTimer(() {
-                          setState(() {});
+                          if (mounted) {
+                            setState(() {});
+                          }
                         });
                       });
                     },
@@ -96,8 +101,23 @@ class _LoginState extends State<Login> {
                       'Login',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () {
-                      _controller.checkLogin(context);
+                    onPressed: () async {
+                      bool success = await _controller.checkLogin();
+
+                      if (!mounted) return;
+
+                      if (mounted) {
+                        setState(() {
+                          if (success) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Beranda(),
+                              ),
+                            );
+                          }
+                        });
+                      }
                     },
                   ),
 
