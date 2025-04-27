@@ -2,18 +2,13 @@
 import 'package:drawer/reusable/reusable_drawer.dart';
 import 'package:flutter/material.dart';
 
-class Pengaturan extends StatefulWidget {
-  @override
-  _Pengaturan createState() => _Pengaturan();
-}
-
-class _Pengaturan extends State<Pengaturan> {
+class Pengaturan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Drawer"),
+          title: Text("Halaman Pengaturan"),
           centerTitle: true,
         ),
         drawer: MyDrawer(),

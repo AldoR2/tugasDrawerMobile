@@ -30,6 +30,7 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: TextFormField(
+        
         keyboardType: widget.inputType,
         controller: widget.controller,
         onChanged: (text) => widget.onChangedCallback(),

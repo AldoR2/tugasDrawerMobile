@@ -71,7 +71,7 @@ class LoginController {
     validateUsername(usernameController.text);
     validatePassword(passwordController.text);
 
-    if (user != null) {
+    if (user != null && status1 == false && status2 == false) {
       if (user.username == usernameController.text &&
           user.password == passwordController.text) {
         Fluttertoast.showToast(
@@ -92,6 +92,13 @@ class LoginController {
       }
       return false;
     } else {
+      Fluttertoast.showToast(
+        msg: "Penuhi Validasi terlebih dahulu",
+        backgroundColor: Colors.red,
+        gravity: ToastGravity.CENTER,
+        webPosition: "center",
+      );
+
       return false;
     }
   }

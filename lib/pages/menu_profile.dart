@@ -22,7 +22,7 @@ class _Profile extends State<Profile> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Profile Page"), centerTitle: true),
+        appBar: AppBar(title: Text("Halaman Profile"), centerTitle: true),
         drawer: MyDrawer(),
         body: Container(
           child: Center(

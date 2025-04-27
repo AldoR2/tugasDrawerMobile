@@ -1,18 +1,13 @@
 import 'package:drawer/reusable/reusable_drawer.dart';
 import 'package:flutter/material.dart';
 
-class Proyek extends StatefulWidget {
-  @override
-  _Proyek createState() => _Proyek();
-}
-
-class _Proyek extends State<Proyek> {
+class Proyek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Drawer"),
+          title: Text("Halaman Proyek"),
           centerTitle: true,
         ),
         drawer: MyDrawer(),

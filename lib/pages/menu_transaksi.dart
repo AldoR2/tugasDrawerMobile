@@ -1,27 +1,16 @@
 import 'package:drawer/reusable/reusable_drawer.dart';
 import 'package:flutter/material.dart';
 
-class Transaksi extends StatefulWidget {
-  @override
-  _Transaksi createState() => _Transaksi();
-}
-
-class _Transaksi extends State<Transaksi> {
+class Transaksi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Drawer"),
-          centerTitle: true,
-        ),
+        appBar: AppBar(title: Text("Halaman Transaksi"), centerTitle: true),
         drawer: MyDrawer(),
         body: Container(
           child: Center(
-            child: Text(
-              "Transaksi",
-              style: TextStyle(fontSize: 50.0),
-            ),
+            child: Text("Transaksi", style: TextStyle(fontSize: 50.0)),
           ),
         ),
       ),

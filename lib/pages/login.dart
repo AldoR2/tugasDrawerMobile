@@ -1,8 +1,9 @@
 import 'package:drawer/controllers/login_controller.dart';
-import 'package:drawer/reusable/reusable_widget.dart';
+import 'package:drawer/reusable/reusable_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:drawer/pages/register.dart';
 import 'package:drawer/pages/beranda.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -28,11 +29,7 @@ class _LoginState extends State<Login> {
         body: ListView(
           children: [
             SizedBox(height: 80),
-            Image.asset(
-                          "assets/padlock.png",
-                          width: 120.0,
-                          height: 120.0,
-                        ),
+            Image.asset("assets/padlock.png", width: 120.0, height: 120.0),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -44,14 +41,16 @@ class _LoginState extends State<Login> {
                       fontSize: 30,
                       color: const Color.fromARGB(255, 223, 96, 37),
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins'
+                      fontFamily: 'Poppins',
                     ),
                   ),
                   Text(
                     "Selamat datang kembali",
-                    style: TextStyle(fontFamily: 'Poppins', 
-                    color: Colors.black87,
-                    fontSize: 20),
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Colors.black87,
+                      fontSize: 20,
+                    ),
                   ),
                   SizedBox(height: 40),
                   ReusableTextField(
@@ -99,34 +98,51 @@ class _LoginState extends State<Login> {
                   ),
 
                   SizedBox(height: 20),
-                  ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll<Color>(
-                        Colors.blueAccent,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 45,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          // Hilangkan 'const' di sini
+                          backgroundColor: const WidgetStatePropertyAll<Color>(
+                            Color.fromARGB(255, 223, 96, 37),
+                          ),
+                          elevation: WidgetStatePropertyAll(3),
+                          shape: WidgetStateProperty.all<
+                            RoundedRectangleBorder
+                          >(
+                            // Ganti 'WidgetStateProperty' menjadi 'MaterialStateProperty'
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        onPressed: () async {
+                          bool success = await _controller.checkLogin();
+
+                          if (!mounted) return;
+
+                          if (mounted) {
+                            setState(() {
+                              if (success) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Beranda(),
+                                  ),
+                                );
+                              }
+                            });
+                          }
+                        },
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: ()async {
-                      bool success = await _controller.checkLogin();
-
-                      if (!mounted) return;
-
-                      if (mounted) {
-                        setState(() {
-                          if (success) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Beranda(),
-                              ),
-                            );
-                          }
-                        });
-                      }
-                    },
                   ),
                   SizedBox(height: 20),
                   Padding(
@@ -156,8 +172,12 @@ class _LoginState extends State<Login> {
                             child: const Text(
                               "Registrasi", // Teks "Registrasi" yang bisa diklik
                               style: TextStyle(
-                                color:
-                                    Color.fromARGB(255, 223, 96, 37), // Warna teks registrasi
+                                color: Color.fromARGB(
+                                  255,
+                                  223,
+                                  96,
+                                  37,
+                                ), // Warna teks registrasi
                               ),
                             ),
                           ),
