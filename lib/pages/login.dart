@@ -25,25 +25,33 @@ class _LoginState extends State<Login> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.amber),
       home: Scaffold(
-        appBar: AppBar(title: Text('Halaman Login'), centerTitle: true),
         body: ListView(
           children: [
+            SizedBox(height: 80),
+            Image.asset(
+                          "assets/padlock.png",
+                          width: 120.0,
+                          height: 120.0,
+                        ),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(height: 100),
+                  SizedBox(height: 50),
                   Text(
-                    "Selamat datang, By One Chou?",
+                    "Login disini",
                     style: TextStyle(
                       fontSize: 30,
-                      color: Colors.black,
+                      color: const Color.fromARGB(255, 223, 96, 37),
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins'
                     ),
                   ),
                   Text(
-                    "Silakan melakukan login untuk mengakes aplikasi",
-                    style: TextStyle(fontFamily: 'Poppins', color: Colors.grey),
+                    "Selamat datang kembali",
+                    style: TextStyle(fontFamily: 'Poppins', 
+                    color: Colors.black87,
+                    fontSize: 20),
                   ),
                   SizedBox(height: 40),
                   ReusableTextField(
@@ -101,7 +109,7 @@ class _LoginState extends State<Login> {
                       'Login',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () async {
+                    onPressed: ()async {
                       bool success = await _controller.checkLogin();
 
                       if (!mounted) return;
@@ -120,8 +128,7 @@ class _LoginState extends State<Login> {
                       }
                     },
                   ),
-
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                     child: Row(
@@ -150,7 +157,7 @@ class _LoginState extends State<Login> {
                               "Registrasi", // Teks "Registrasi" yang bisa diklik
                               style: TextStyle(
                                 color:
-                                    Colors.blueAccent, // Warna teks registrasi
+                                    Color.fromARGB(255, 223, 96, 37), // Warna teks registrasi
                               ),
                             ),
                           ),

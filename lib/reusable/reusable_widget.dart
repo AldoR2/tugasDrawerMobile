@@ -38,7 +38,19 @@ class _ReusableTextFieldState extends State<ReusableTextField> {
           labelText: widget.label,
           errorText: widget.errorTextProvider!(),
           prefixIcon: Icon(widget.icon),
+          filled: true,
+          fillColor: Colors.amber[50],
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color.fromARGB(255, 223, 96, 37)), // Warna border saat aktif
+          ),
+          enabledBorder: OutlineInputBorder( // Tambahkan properti ini
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color.fromARGB(255, 223, 96, 37)), // Warna border saat tidak aktif
+          ),
+          labelStyle: TextStyle(color: Colors.grey),
+          floatingLabelStyle: TextStyle(color: Color.fromARGB(255, 223, 96, 37)),
         ),
       ),
     );

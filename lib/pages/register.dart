@@ -22,34 +22,34 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Halaman Registrasi'),
-        centerTitle: true,
-      ),
       body: ListView(
         children: [
+          SizedBox(height: 80),
+            Image.asset(
+                          "assets/card.png",
+                          width: 120.0,
+                          height: 120.0,
+                        ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const SizedBox(height: 20),
-                const Icon(
-                  Icons.business_center,
-                  color: Colors.blueAccent,
-                  size: 90,
-                ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 50),
                 const Text(
-                  "Registrasi untuk By One Chou",
+                  "Registrasi Akun",
                   style: TextStyle(
                     fontSize: 30,
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 223, 96, 37),
+                    fontFamily: 'Poppins',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const Text(
                   "Silakan isi form untuk registrasi",
-                  style: TextStyle(fontFamily: 'Poppins', color: Colors.grey),
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: Colors.black87,
+                    fontSize: 20),
                 ),
                 const SizedBox(height: 40),
                 ReusableTextField(
@@ -159,9 +159,20 @@ class _RegisterState extends State<Register> {
                               ? _controller.jenisKelaminErrorMessage
                               : null,
                       prefixIcon: const Icon(Icons.transgender),
+                      filled: true,
+                      fillColor: Colors.amber[50],
                       border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                      ),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 223, 96, 37))
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 223, 96, 37))
+                        ),
+                        labelStyle: TextStyle(color: Colors.grey),
+                        floatingLabelStyle: TextStyle(color: Color.fromARGB(255, 223, 96, 37))
                     ),
                     validator:
                         (value) =>
@@ -201,9 +212,18 @@ class _RegisterState extends State<Register> {
                               : null,
                       prefixIcon: const Icon(Icons.date_range),
                       suffixIcon: const Icon(Icons.calendar_today),
+                      filled: true,
+                      fillColor: Colors.amber[50],
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 223, 96, 37))
                       ),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 223, 96, 37))
+                        ),
+                        labelStyle: TextStyle(color: Colors.grey),
+                        floatingLabelStyle: TextStyle(color: Color.fromARGB(255, 223, 96, 37))
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -274,13 +294,24 @@ class _RegisterState extends State<Register> {
                   },
                 ),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll<Color>(
-                      Colors.blueAccent,
-                    ),
-                  ),
-                  onPressed: () async {
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 45,
+                    child: ElevatedButton(
+                      style: ButtonStyle( // Hilangkan 'const' di sini
+                        backgroundColor: const WidgetStatePropertyAll<Color>(
+                          Color.fromARGB(255, 223, 96, 37),
+                        ),
+                        elevation: WidgetStatePropertyAll(3),
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>( // Ganti 'WidgetStateProperty' menjadi 'MaterialStateProperty'
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () async {
                     bool success = await _controller.saveData();
 
                     setState(() {
@@ -289,12 +320,14 @@ class _RegisterState extends State<Register> {
                       }
                     });
                   },
-                  child: const Text(
-                    'Simpan',
-                    style: TextStyle(color: Colors.white),
+                      child: const Text(
+                        'Simpan',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Row(
@@ -309,7 +342,7 @@ class _RegisterState extends State<Register> {
                           },
                           child: const Text(
                             "Login",
-                            style: TextStyle(color: Colors.blueAccent),
+                            style: TextStyle(color: Color.fromARGB(255, 223, 96, 37),),
                           ),
                         ),
                       ),
