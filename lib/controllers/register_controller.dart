@@ -51,8 +51,7 @@ class RegisterController {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController noTelpController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   void validateEmail(String email) {
     if (email.isEmpty) {

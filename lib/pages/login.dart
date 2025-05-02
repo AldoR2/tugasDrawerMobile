@@ -6,7 +6,6 @@ import 'package:drawer/pages/beranda.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
-
   @override
   State<Login> createState() => _LoginState();
 }
@@ -157,8 +156,7 @@ class _LoginState extends State<Login> {
                         MouseRegion(
                           // Widget yang mendeteksi pergerakan mouse
                           cursor:
-                              SystemMouseCursors
-                                  .click, // Mengubah kursor menjadi tangan
+                              SystemMouseCursors.click, // Mengubah kursor menjadi tangan
                           child: GestureDetector(
                             // Widget yang mendeteksi tap
                             onTap: () {
@@ -172,12 +170,7 @@ class _LoginState extends State<Login> {
                             child: const Text(
                               "Registrasi", // Teks "Registrasi" yang bisa diklik
                               style: TextStyle(
-                                color: Color.fromARGB(
-                                  255,
-                                  223,
-                                  96,
-                                  37,
-                                ), // Warna teks registrasi
+                                color: Color.fromARGB(255, 223, 96, 37), // Warna teks registrasi
                               ),
                             ),
                           ),
