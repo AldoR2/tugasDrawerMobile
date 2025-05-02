@@ -56,7 +56,6 @@ class LoginController {
 
   void startPasswordTimer(VoidCallback updateView) {
     status2 = false;
-
     passwordTypingTimer?.cancel();
     passwordTypingTimer = Timer(Duration(seconds: waktu), () {
       validatePassword(passwordController.text);

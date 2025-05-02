@@ -31,8 +31,10 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ListView(
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text("Nama Lengkap: ${_controller.namaLengkap}"),
-            accountEmail: Text("Email: ${_controller.email}"),
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 223, 96, 37) ),
+            accountName: Text("${_controller.namaLengkap}"),
+            accountEmail: Text("${_controller.email}"),
             currentAccountPicture: CircleAvatar(
               backgroundImage: AssetImage('assets/icons8-male-user-76.png'),
             ),
@@ -93,7 +95,7 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           Divider(),
           ListTile(
-            iconColor: Colors.red,
+            // iconColor: Color.fromARGB(255, 223, 96, 37),
             title: Text("Logout"),
             trailing: Icon(Icons.login_outlined),
             onTap: () {
