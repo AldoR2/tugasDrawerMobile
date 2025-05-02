@@ -1,13 +1,10 @@
 import 'dart:async';
 
 import 'package:drawer/models/user.model.dart';
-import 'package:drawer/pages/beranda.dart';
 import 'package:drawer/services/user_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+  
 class LoginController {
   bool status1 = false;
   bool status2 = false;

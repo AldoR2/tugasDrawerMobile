@@ -7,8 +7,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
 
 class RegisterController {
-  late final UserService _service;
-
   String? jenisKelamin;
   DateTime? selectedDate;
   String? stringDate;

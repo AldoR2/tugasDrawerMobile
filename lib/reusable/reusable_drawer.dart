@@ -31,8 +31,8 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ListView(
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text("Nama Lengkap: ${_controller.namaLengkap}"),
-            accountEmail: Text("Email: ${_controller.email}"),
+            accountName: Text("${_controller.namaLengkap}"),
+            accountEmail: Text(" ${_controller.email}"),
             currentAccountPicture: CircleAvatar(
               backgroundImage: AssetImage('assets/icons8-male-user-76.png'),
             ),

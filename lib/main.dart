@@ -1,5 +1,4 @@
 import 'package:drawer/pages/login.dart';
-import 'package:drawer/pages/menu_profile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Profile());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: Login());
   }
 }
